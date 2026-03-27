@@ -1,0 +1,24 @@
+# ninja log v6
+39	624	7956281345276425	RustTokenParser_autogen/timestamp	4834649068ee90f4
+1511	3132	7956076338463840	CMakeFiles/RustTokenParser.dir/RustTokenParser_autogen/mocs_compilation.cpp.obj	538b1b973980656f
+39	624	7956281345276425	RustTokenParser_autogen/mocs_compilation.cpp	4834649068ee90f4
+627	6494	7956281351146243	CMakeFiles/RustTokenParser.dir/mainwindow.cpp.obj	d4527b088d1e7ce
+39	624	7956281345276425	D:/Users/LiaoYiLin/Documents/RustTokenParser/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/RustTokenParser_autogen/timestamp	4834649068ee90f4
+39	624	7956281345276425	D:/Users/LiaoYiLin/Documents/RustTokenParser/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/RustTokenParser_autogen/mocs_compilation.cpp	4834649068ee90f4
+655	1810	7956281351429867	CMakeFiles/RustTokenParser.dir/Lexer.cpp.obj	86d8514bbdf70eb2
+1534	3183	7956076338691533	CMakeFiles/RustTokenParser.dir/main.cpp.obj	785462a98746feed
+6495	7371	7956281409834630	RustTokenParser.exe	61fcb868ee061a46
+82	763	7959704210298281	RustTokenParser_autogen/timestamp	4834649068ee90f4
+82	763	7959704210298281	RustTokenParser_autogen/mocs_compilation.cpp	4834649068ee90f4
+82	763	7959704210298281	D:/Users/LiaoYiLin/Documents/RustTokenParser/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/RustTokenParser_autogen/timestamp	4834649068ee90f4
+82	763	7959704210298281	D:/Users/LiaoYiLin/Documents/RustTokenParser/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/RustTokenParser_autogen/mocs_compilation.cpp	4834649068ee90f4
+797	2642	7959704217453049	CMakeFiles/RustTokenParser.dir/Lexer.cpp.obj	86d8514bbdf70eb2
+767	6310	7959704217158719	CMakeFiles/RustTokenParser.dir/mainwindow.cpp.obj	d4527b088d1e7ce
+6311	8076	7959704272592006	RustTokenParser.exe	61fcb868ee061a46
+48	717	7959709394508295	RustTokenParser_autogen/timestamp	4834649068ee90f4
+48	717	7959709394508295	RustTokenParser_autogen/mocs_compilation.cpp	4834649068ee90f4
+48	717	7959709394508295	D:/Users/LiaoYiLin/Documents/RustTokenParser/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/RustTokenParser_autogen/timestamp	4834649068ee90f4
+48	717	7959709394508295	D:/Users/LiaoYiLin/Documents/RustTokenParser/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/RustTokenParser_autogen/mocs_compilation.cpp	4834649068ee90f4
+748	1837	7959709401456410	CMakeFiles/RustTokenParser.dir/Lexer.cpp.obj	86d8514bbdf70eb2
+721	5861	7959709401243281	CMakeFiles/RustTokenParser.dir/mainwindow.cpp.obj	d4527b088d1e7ce
+5862	6680	7959709452638687	RustTokenParser.exe	61fcb868ee061a46
