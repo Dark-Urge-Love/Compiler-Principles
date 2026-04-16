@@ -1,0 +1,32 @@
+[
+{
+  "directory": "D:/Users/LiaoYiLin/Documents/DFANFA/build",
+  "command": "D:\\Qt\\Tools\\mingw1310_64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles/DFANFA.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\DFANFA.dir\\DFANFA_autogen\\mocs_compilation.cpp.obj -c D:\\Users\\LiaoYiLin\\Documents\\DFANFA\\build\\DFANFA_autogen\\mocs_compilation.cpp",
+  "file": "D:/Users/LiaoYiLin/Documents/DFANFA/build/DFANFA_autogen/mocs_compilation.cpp",
+  "output": "CMakeFiles/DFANFA.dir/DFANFA_autogen/mocs_compilation.cpp.obj"
+},
+{
+  "directory": "D:/Users/LiaoYiLin/Documents/DFANFA/build",
+  "command": "D:\\Qt\\Tools\\mingw1310_64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles/DFANFA.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\DFANFA.dir\\main.cpp.obj -c D:\\Users\\LiaoYiLin\\Documents\\DFANFA\\main.cpp",
+  "file": "D:/Users/LiaoYiLin/Documents/DFANFA/main.cpp",
+  "output": "CMakeFiles/DFANFA.dir/main.cpp.obj"
+},
+{
+  "directory": "D:/Users/LiaoYiLin/Documents/DFANFA/build",
+  "command": "D:\\Qt\\Tools\\mingw1310_64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles/DFANFA.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\DFANFA.dir\\mainwindow.cpp.obj -c D:\\Users\\LiaoYiLin\\Documents\\DFANFA\\mainwindow.cpp",
+  "file": "D:/Users/LiaoYiLin/Documents/DFANFA/mainwindow.cpp",
+  "output": "CMakeFiles/DFANFA.dir/mainwindow.cpp.obj"
+},
+{
+  "directory": "D:/Users/LiaoYiLin/Documents/DFANFA/build",
+  "command": "D:\\Qt\\Tools\\mingw1310_64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles/DFANFA.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\DFANFA.dir\\automata_engine.cpp.obj -c D:\\Users\\LiaoYiLin\\Documents\\DFANFA\\automata_engine.cpp",
+  "file": "D:/Users/LiaoYiLin/Documents/DFANFA/automata_engine.cpp",
+  "output": "CMakeFiles/DFANFA.dir/automata_engine.cpp.obj"
+},
+{
+  "directory": "D:/Users/LiaoYiLin/Documents/DFANFA/build",
+  "command": "D:\\Qt\\Tools\\mingw1310_64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles/DFANFA.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\DFANFA.dir\\graph_widget.cpp.obj -c D:\\Users\\LiaoYiLin\\Documents\\DFANFA\\graph_widget.cpp",
+  "file": "D:/Users/LiaoYiLin/Documents/DFANFA/graph_widget.cpp",
+  "output": "CMakeFiles/DFANFA.dir/graph_widget.cpp.obj"
+}
+]
