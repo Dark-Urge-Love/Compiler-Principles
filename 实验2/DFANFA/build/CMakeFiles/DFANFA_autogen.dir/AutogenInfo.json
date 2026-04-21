@@ -315,9 +315,9 @@
 			null
 		],
 		[
-			"D:/Users/LiaoYiLin/Documents/DFANFA/graph_widget.h",
+			"D:/Users/LiaoYiLin/Documents/DFANFA/lexer_engine.h",
 			"MU",
-			"EWIEGA46WW/moc_graph_widget.cpp",
+			"EWIEGA46WW/moc_lexer_engine.cpp",
 			null
 		],
 		[
@@ -400,7 +400,7 @@
 	"SOURCES" : 
 	[
 		[ "D:/Users/LiaoYiLin/Documents/DFANFA/automata_engine.cpp", "MU", null ],
-		[ "D:/Users/LiaoYiLin/Documents/DFANFA/graph_widget.cpp", "MU", null ],
+		[ "D:/Users/LiaoYiLin/Documents/DFANFA/lexer_engine.cpp", "MU", null ],
 		[ "D:/Users/LiaoYiLin/Documents/DFANFA/main.cpp", "MU", null ],
 		[ "D:/Users/LiaoYiLin/Documents/DFANFA/mainwindow.cpp", "MU", null ]
 	],

@@ -405,6 +405,7 @@ D:/Users/LiaoYiLin/Documents/DFANFA/mainwindow.h
  mdp:D:/Users/LiaoYiLin/Documents/DFANFA/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/DFANFA_autogen/moc_predefs.h
  mdp:D:/Users/LiaoYiLin/Documents/DFANFA/mainwindow.h
 D:/Users/LiaoYiLin/Documents/DFANFA/automata_engine.h
+D:/Users/LiaoYiLin/Documents/DFANFA/lexer_engine.h
 D:/Users/LiaoYiLin/Documents/DFANFA/graph_widget.h
  mmc:Q_OBJECT
  mdp:D:/Qt/6.10.0/mingw_64/include/QtCore/QMap
@@ -789,8 +790,9 @@ D:/Users/LiaoYiLin/Documents/DFANFA/graph_widget.h
  mdp:D:/Users/LiaoYiLin/Documents/DFANFA/automata_engine.h
  mdp:D:/Users/LiaoYiLin/Documents/DFANFA/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/DFANFA_autogen/moc_predefs.h
  mdp:D:/Users/LiaoYiLin/Documents/DFANFA/graph_widget.h
-D:/Users/LiaoYiLin/Documents/DFANFA/mainwindow.cpp
- uic:ui_mainwindow.h
 D:/Users/LiaoYiLin/Documents/DFANFA/main.cpp
+D:/Users/LiaoYiLin/Documents/DFANFA/mainwindow.cpp
+ uic:./ui_mainwindow.h
 D:/Users/LiaoYiLin/Documents/DFANFA/automata_engine.cpp
 D:/Users/LiaoYiLin/Documents/DFANFA/graph_widget.cpp
+D:/Users/LiaoYiLin/Documents/DFANFA/lexer_engine.cpp

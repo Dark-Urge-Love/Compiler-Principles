@@ -21,21 +21,20 @@ public:
 private slots:
     void on_convertButton_clicked();
     void on_loadButton_clicked();
-    void on_runLexButton_clicked();
 
 private:
     Ui::MainWindow *ui;
+    // 自动机引擎实例
     Automata::Engine m_engine;
     
-    // Lexical analyzer data
+    // 词法分析器数据
     QMap<QString, Automata::DFAGraph*> m_tokenDFAs;
+    // 规则名称到 Token ID 的映射
     QMap<QString, int> m_tokenIds;
-    QMap<QString, int> m_keywords;
+    // 符号 ID 到别名的映射（用于表格显示）
+    QMap<int, QString> m_idToAlias;
 
     void fillNFATable(Automata::NFAGraph* nfa);
     void fillDFATable(Automata::DFAGraph* dfa, QTableWidget* table);
-    void initKeywords();
-    int simulateDFA(Automata::DFAGraph* dfa, const QString& input, int start);
-    QString generateMethod1Code(Automata::DFAGraph* dfa);
 };
-#endif // MAINWINDOW_H
+#endif

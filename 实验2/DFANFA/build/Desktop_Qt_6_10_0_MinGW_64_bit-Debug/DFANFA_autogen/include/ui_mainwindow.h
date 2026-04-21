@@ -54,15 +54,8 @@ public:
     QTableWidget *minDfaTable;
     QWidget *lexTab;
     QVBoxLayout *verticalLayout_6;
-    QSplitter *lexSplitter;
-    QWidget *topWidget;
-    QVBoxLayout *verticalLayout_7;
     QLabel *label_3;
     QPlainTextEdit *generatedCodeEdit;
-    QWidget *bottomWidget;
-    QVBoxLayout *verticalLayout_8;
-    QPushButton *runLexButton;
-    QTableWidget *lexResultTable;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -149,54 +142,16 @@ public:
         lexTab->setObjectName("lexTab");
         verticalLayout_6 = new QVBoxLayout(lexTab);
         verticalLayout_6->setObjectName("verticalLayout_6");
-        lexSplitter = new QSplitter(lexTab);
-        lexSplitter->setObjectName("lexSplitter");
-        lexSplitter->setOrientation(Qt::Vertical);
-        topWidget = new QWidget(lexSplitter);
-        topWidget->setObjectName("topWidget");
-        verticalLayout_7 = new QVBoxLayout(topWidget);
-        verticalLayout_7->setObjectName("verticalLayout_7");
-        verticalLayout_7->setContentsMargins(0, 0, 0, 0);
-        label_3 = new QLabel(topWidget);
+        label_3 = new QLabel(lexTab);
         label_3->setObjectName("label_3");
 
-        verticalLayout_7->addWidget(label_3);
+        verticalLayout_6->addWidget(label_3);
 
-        generatedCodeEdit = new QPlainTextEdit(topWidget);
+        generatedCodeEdit = new QPlainTextEdit(lexTab);
         generatedCodeEdit->setObjectName("generatedCodeEdit");
         generatedCodeEdit->setReadOnly(true);
 
-        verticalLayout_7->addWidget(generatedCodeEdit);
-
-        lexSplitter->addWidget(topWidget);
-        bottomWidget = new QWidget(lexSplitter);
-        bottomWidget->setObjectName("bottomWidget");
-        verticalLayout_8 = new QVBoxLayout(bottomWidget);
-        verticalLayout_8->setObjectName("verticalLayout_8");
-        verticalLayout_8->setContentsMargins(0, 0, 0, 0);
-        runLexButton = new QPushButton(bottomWidget);
-        runLexButton->setObjectName("runLexButton");
-
-        verticalLayout_8->addWidget(runLexButton);
-
-        lexResultTable = new QTableWidget(bottomWidget);
-        if (lexResultTable->columnCount() < 4)
-            lexResultTable->setColumnCount(4);
-        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
-        lexResultTable->setHorizontalHeaderItem(0, __qtablewidgetitem);
-        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
-        lexResultTable->setHorizontalHeaderItem(1, __qtablewidgetitem1);
-        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
-        lexResultTable->setHorizontalHeaderItem(2, __qtablewidgetitem2);
-        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
-        lexResultTable->setHorizontalHeaderItem(3, __qtablewidgetitem3);
-        lexResultTable->setObjectName("lexResultTable");
-
-        verticalLayout_8->addWidget(lexResultTable);
-
-        lexSplitter->addWidget(bottomWidget);
-
-        verticalLayout_6->addWidget(lexSplitter);
+        verticalLayout_6->addWidget(generatedCodeEdit);
 
         tabWidget->addTab(lexTab, QString());
         splitter->addWidget(tabWidget);
@@ -213,7 +168,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(3);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -230,15 +185,6 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(dfaTab), QCoreApplication::translate("MainWindow", "DFA \350\275\254\346\215\242\350\241\250", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(minDfaTab), QCoreApplication::translate("MainWindow", "\346\234\200\345\260\217\345\214\226 DFA \350\241\250", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "\347\224\237\346\210\220\347\232\204\350\257\215\346\263\225\345\210\206\346\236\220\347\250\213\345\272\217 (C++):", nullptr));
-        runLexButton->setText(QCoreApplication::translate("MainWindow", "\345\257\271\344\270\212\346\226\271\347\224\237\346\210\220\347\232\204\346\272\220\347\240\201\350\277\233\350\241\214\350\257\215\346\263\225\345\210\206\346\236\220\346\265\213\350\257\225", nullptr));
-        QTableWidgetItem *___qtablewidgetitem = lexResultTable->horizontalHeaderItem(0);
-        ___qtablewidgetitem->setText(QCoreApplication::translate("MainWindow", "\350\241\214\345\217\267", nullptr));
-        QTableWidgetItem *___qtablewidgetitem1 = lexResultTable->horizontalHeaderItem(1);
-        ___qtablewidgetitem1->setText(QCoreApplication::translate("MainWindow", "\345\215\225\350\257\215", nullptr));
-        QTableWidgetItem *___qtablewidgetitem2 = lexResultTable->horizontalHeaderItem(2);
-        ___qtablewidgetitem2->setText(QCoreApplication::translate("MainWindow", "Token ID", nullptr));
-        QTableWidgetItem *___qtablewidgetitem3 = lexResultTable->horizontalHeaderItem(3);
-        ___qtablewidgetitem3->setText(QCoreApplication::translate("MainWindow", "\345\261\236\346\200\247\345\200\274", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(lexTab), QCoreApplication::translate("MainWindow", "\350\257\215\346\263\225\345\210\206\346\236\220 \346\272\220\347\240\201\346\237\245\347\234\213", nullptr));
     } // retranslateUi
 

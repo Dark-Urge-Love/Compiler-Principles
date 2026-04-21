@@ -247,29 +247,29 @@ automata_engine.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\DFANFA.dir\build.make CMakeFiles/DFANFA.dir/automata_engine.cpp.s
 .PHONY : automata_engine.cpp.s
 
-graph_widget.obj: graph_widget.cpp.obj
-.PHONY : graph_widget.obj
+lexer_engine.obj: lexer_engine.cpp.obj
+.PHONY : lexer_engine.obj
 
 # target to build an object file
-graph_widget.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DFANFA.dir\build.make CMakeFiles/DFANFA.dir/graph_widget.cpp.obj
-.PHONY : graph_widget.cpp.obj
+lexer_engine.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DFANFA.dir\build.make CMakeFiles/DFANFA.dir/lexer_engine.cpp.obj
+.PHONY : lexer_engine.cpp.obj
 
-graph_widget.i: graph_widget.cpp.i
-.PHONY : graph_widget.i
+lexer_engine.i: lexer_engine.cpp.i
+.PHONY : lexer_engine.i
 
 # target to preprocess a source file
-graph_widget.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DFANFA.dir\build.make CMakeFiles/DFANFA.dir/graph_widget.cpp.i
-.PHONY : graph_widget.cpp.i
+lexer_engine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DFANFA.dir\build.make CMakeFiles/DFANFA.dir/lexer_engine.cpp.i
+.PHONY : lexer_engine.cpp.i
 
-graph_widget.s: graph_widget.cpp.s
-.PHONY : graph_widget.s
+lexer_engine.s: lexer_engine.cpp.s
+.PHONY : lexer_engine.s
 
 # target to generate assembly for a file
-graph_widget.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DFANFA.dir\build.make CMakeFiles/DFANFA.dir/graph_widget.cpp.s
-.PHONY : graph_widget.cpp.s
+lexer_engine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DFANFA.dir\build.make CMakeFiles/DFANFA.dir/lexer_engine.cpp.s
+.PHONY : lexer_engine.cpp.s
 
 main.obj: main.cpp.obj
 .PHONY : main.obj
@@ -340,9 +340,9 @@ help:
 	@echo ... automata_engine.obj
 	@echo ... automata_engine.i
 	@echo ... automata_engine.s
-	@echo ... graph_widget.obj
-	@echo ... graph_widget.i
-	@echo ... graph_widget.s
+	@echo ... lexer_engine.obj
+	@echo ... lexer_engine.i
+	@echo ... lexer_engine.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
