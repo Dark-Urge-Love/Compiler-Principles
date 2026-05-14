@@ -1,0 +1,20 @@
+{ Test all expanded features }
+read x;
+read y;
+
+if x < y then
+    write y
+else
+    write x
+end;
+
+z := (x + y) * (x - y) / 2 % 3 ^ 2;
+
+while (z > 0)
+    write z;
+    --z
+endwhile;
+
+for (i := 0; i < 10; ++i)
+    write i
+endfor

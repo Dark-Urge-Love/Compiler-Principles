@@ -1,0 +1,4 @@
+{ Incorrect for loop }
+for (i := 0 i < 10 ++i) { Missing semicolons }
+    write i
+endfor

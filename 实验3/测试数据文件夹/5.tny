@@ -1,0 +1,4 @@
+read x;
+if x > 0 { Missing then }
+    write x
+{ Missing end }

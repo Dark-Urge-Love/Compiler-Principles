@@ -1,0 +1,4 @@
+{ Test regular expression features }
+re1 ::= a | b & c?;
+re2 ::= (a | #) & d;
+re3 ::= a & b & c
