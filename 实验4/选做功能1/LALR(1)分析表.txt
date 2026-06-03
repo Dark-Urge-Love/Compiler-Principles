@@ -1,0 +1,163 @@
+=============================================================
+一、数据结构（Production.h）
+=============================================================
+
+#include <QString>
+#include <QStringList>
+#include <QVector>
+#include <QMap>
+#include <QSet>
+
+// 产生式结构
+struct Production {
+    QString lhs;          // 左部（非终结符）
+    QStringList rhs;      // 右部符号序列（空 = epsilon）
+    int index = 0;        // 编号
+};
+
+// LR(1) 项目（LR(0) 项目 = lookahead 为空）
+struct LR1Item {
+    int prodIndex = 0;    // 产生式在 augProductions 中的下标
+    int dotPos = 0;       // 圆点位置
+    QString lookahead;    // 展望符（LR(1) 使用，LR(0) 忽略）
+};
+
+// LR 状态（适用于 LR(0) / LR(1) / LALR(1)）
+struct LRState {
+    int id = 0;
+    QVector<LR1Item> items;
+    QMap<QString, int> transitions;  // symbol -> target state
+    QVector<int> originalIds;        // LALR 合并前来自哪些 LR(1) 状态
+};
+
+// 分析表动作
+struct ParsingAction {
+    QString type;   // "shift" / "reduce" / "accept" / "conflict" / ""
+    int value = -1; // shift: 目标状态; reduce: 产生式下标; 其他: 忽略
+};
+
+
+=============================================================
+二、核心算法实现（LRDFA.cpp）
+=============================================================
+
+// --------------------------------------------------------
+// 3.1 工具函数：productionToString
+// --------------------------------------------------------
+
+QString LRDFABuilder::productionToString(const Production &p)
+{
+    if (p.rhs.isEmpty())
+        return p.lhs + " -> #";
+    return p.lhs + " -> " + p.rhs.join(" ");
+}
+
+
+// --------------------------------------------------------
+// 3.2 ACTION 表构建（核心算法）
+// --------------------------------------------------------
+//
+// 算法思路：
+//   遍历每个 LALR(1) 状态，分两步构建 ACTION 条目：
+//   第1步：从转移表中提取移进动作
+//   第2步：从归约项目中提取归约/接受动作
+//
+// 输入：
+//   lalrStates     —— LALR(1) 状态列表
+//   augProductions —— 增广文法产生式列表
+//   terminals      —— 终结符集合
+// 输出：
+//   actionTable[stateId][symbol] = ParsingAction
+//     其中 symbol 为终结符或 $
+//     ParsingAction.type  = "shift" / "reduce" / "accept" / "conflict"
+//     ParsingAction.value = shift目标状态 / reduce产生式下标
+// --------------------------------------------------------
+
+QMap<int, QMap<QString, ParsingAction>> LRDFABuilder::buildActionTable(
+    const QVector<LRState> &lalrStates,
+    const QVector<Production> &augProductions,
+    const QSet<QString> &terminals)
+{
+    QMap<int, QMap<QString, ParsingAction>> table;
+
+    for (const auto &state : lalrStates) {
+        QMap<QString, ParsingAction> &actions = table[state.id];
+
+        for (auto it = state.transitions.begin();
+             it != state.transitions.end(); ++it) {
+            if (terminals.contains(it.key())) {
+                ParsingAction a;
+                a.type = "shift";
+                a.value = it.value();
+                actions[it.key()] = a;
+            }
+        }
+
+        // 遍历状态中的LR(1)项目，若圆点在末尾则为归约项目
+        for (const auto &item : state.items) {
+            const Production &prod = augProductions[item.prodIndex];
+            if (item.dotPos != prod.rhs.size())
+                continue;  // 非归约项目，跳过
+
+            if (item.prodIndex == 0) {
+                // S' -> S .  产生式0是增广文法的起始产生式
+                // 表示整个分析成功，应为接受动作
+                if (!actions.contains("$")) {
+                    ParsingAction a;
+                    a.type = "accept";
+                    actions["$"] = a;
+                }
+            } else {
+                // 普通归约项目
+                const QString &la = item.lookahead;
+                if (!actions.contains(la)) {
+                    ParsingAction a;
+                    a.type = "reduce";
+                    a.value = item.prodIndex;
+                    actions[la] = a;
+                } else if (actions[la].type == "shift") {
+                    // 若同一终结符上已有移进动作，则标记为冲突
+                    actions[la].type = "conflict";
+                }
+            }
+        }
+    }
+
+    return table;
+}
+
+
+// --------------------------------------------------------
+// 3.3 GOTO 表构建（核心算法）
+// --------------------------------------------------------
+//
+// 算法思路：
+//   对每个 LALR(1) 状态，遍历其转移表，
+//   若转移符号是非终结符，则记录 GOTO 转移
+//
+// 输入：
+//   lalrStates   —— LALR(1) 状态列表
+//   nonTerminals —— 非终结符集合
+// 输出：
+//   gotoTable[stateId][nonTerminal] = targetStateId
+// --------------------------------------------------------
+
+QMap<int, QMap<QString, int>> LRDFABuilder::buildGotoTable(
+    const QVector<LRState> &lalrStates,
+    const QSet<QString> &nonTerminals)
+{
+    QMap<int, QMap<QString, int>> table;
+
+    for (const auto &state : lalrStates) {
+        QMap<QString, int> gotos;
+        for (auto it = state.transitions.begin();
+             it != state.transitions.end(); ++it) {
+            // 只保留非终结符的转移（终结符的归ACTION表）
+            if (nonTerminals.contains(it.key()))
+                gotos[it.key()] = it.value();
+        }
+        table[state.id] = gotos;
+    }
+
+    return table;
+}

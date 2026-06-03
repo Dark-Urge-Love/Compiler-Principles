@@ -1,0 +1,203 @@
+=============================================================
+一、数据结构（Production.h）
+=============================================================
+
+#include <QString>
+#include <QStringList>
+#include <QVector>
+#include <QMap>
+#include <QSet>
+
+// 产生式结构
+struct Production {
+    QString lhs;          // 左部（非终结符）
+    QStringList rhs;      // 右部符号序列（空 = epsilon）
+    int index = 0;        // 编号
+};
+
+// LR(1) 项目
+struct LR1Item {
+    int prodIndex = 0;
+    int dotPos = 0;
+    QString lookahead;
+};
+
+// LR 状态
+struct LRState {
+    int id = 0;
+    QVector<LR1Item> items;
+    QMap<QString, int> transitions;
+    QVector<int> originalIds;
+};
+
+// 分析表动作
+struct ParsingAction {
+    QString type;   // "shift" / "reduce" / "accept" / "conflict"
+    int value = -1; // shift: 目标状态; reduce: 产生式下标
+};
+
+=============================================================
+二、核心算法实现（LRDFA.cpp）
+=============================================================
+
+// --------------------------------------------------------
+// 3.1 辅助函数
+// --------------------------------------------------------
+
+QString LRDFABuilder::productionToString(const Production &p)
+{
+    if (p.rhs.isEmpty())
+        return p.lhs + " -> #";
+    return p.lhs + " -> " + p.rhs.join(" ");
+}
+
+QString LRDFABuilder::joinIntVector(const QVector<int> &vec)
+{
+    QStringList strs;
+    for (int v : vec)
+        strs.append(QString::number(v));
+    return strs.join(" ");
+}
+
+
+// --------------------------------------------------------
+// 3.2 LALR(1) 句子分析器（核心算法）
+// --------------------------------------------------------
+//
+// 算法思路：
+//   使用状态栈进行移进-归约（Shift-Reduce）分析。
+//   每步读栈顶状态和当前输入符号，查 ACTION 表：
+//     shift  → 推入目标状态，消费输入
+//     reduce → 弹出|rhs|个状态，查 GOTO 表推入新状态
+//     accept → 分析成功
+//     error  → 报告错误
+//   全程按步骤记录状态栈和输入变化。
+//
+// 输入：
+//   tokens          —— 待分析句子的符号序列
+//   actionTable     —— ACTION 表（由 buildActionTable 生成）
+//   gotoTable       —— GOTO 表（由 buildGotoTable 生成）
+//   augProductions  —— 增广文法产生式
+// 输出：
+//   ParseResult：
+//     .steps     —— 分析步骤（每行含 步骤号/状态栈/输入/动作）
+//     .accepted  —— 是否被文法接受
+
+
+LRDFABuilder::ParseResult LRDFABuilder::parse(
+    const QStringList &tokens,
+    QMap<int, QMap<QString, ParsingAction>> &actionTable,
+    QMap<int, QMap<QString, int>> &gotoTable,
+    const QVector<Production> &augProductions)
+{
+    ParseResult result;
+
+
+    QVector<int> stateStack;
+    stateStack.append(0);
+
+    int pos = 0;       // 当前输入位置
+    int stepNum = 0;   // 步骤编号
+
+
+    result.steps.append({
+        QString::number(stepNum++),      // 步骤号
+        "0",                             // 状态栈
+        tokens.join(" "),                // 输入
+        "初始化"                         // 动作
+    });
+
+    while (true) {
+        // 读当前状态和当前输入符号
+        int state = stateStack.last();
+        QString lookahead = (pos < tokens.size())
+                          ? tokens[pos]
+                          : "$";  // 输入结束用 $ 标记
+
+
+        if (!actionTable.contains(state)
+         || !actionTable[state].contains(lookahead)) {
+            // 无匹配动作 → 语法错误
+            result.steps.append({
+                QString::number(stepNum++),
+                joinIntVector(stateStack),
+                tokens.mid(pos).join(" "),
+                QString("错误：状态 %1 遇到 '%2' 无有效动作")
+                    .arg(state).arg(lookahead)
+            });
+            break;
+        }
+
+        const ParsingAction &act = actionTable[state][lookahead];
+
+        if (act.type == "shift") {
+            stateStack.append(act.value);  // 推入目标状态
+            pos++;                          // 消费一个输入符号
+
+            result.steps.append({
+                QString::number(stepNum++),
+                joinIntVector(stateStack),
+                tokens.mid(pos).join(" "),
+                QString("移进到状态 %1").arg(act.value)
+            });
+        }
+
+        else if (act.type == "reduce") {
+            const Production &prod = augProductions[act.value];
+            int popCount = prod.rhs.size();
+
+
+            for (int i = 0; i < popCount && !stateStack.isEmpty(); i++)
+                stateStack.removeLast();
+
+
+            int topState = stateStack.isEmpty() ? 0 : stateStack.last();
+            if (!gotoTable.contains(topState)
+             || !gotoTable[topState].contains(prod.lhs)) {
+                // 无 goto 转移 → 语法错误
+                result.steps.append({
+                    QString::number(stepNum++),
+                    joinIntVector(stateStack),
+                    tokens.mid(pos).join(" "),
+                    QString("错误：状态 %1 在 '%2' 上无 goto 转移")
+                        .arg(topState).arg(prod.lhs)
+                });
+                break;
+            }
+
+
+            stateStack.append(gotoTable[topState][prod.lhs]);
+
+            result.steps.append({
+                QString::number(stepNum++),
+                joinIntVector(stateStack),
+                tokens.mid(pos).join(" "),
+                QString("归约: %1").arg(productionToString(prod))
+            });
+        }
+
+
+        else if (act.type == "accept") {
+            result.steps.append({
+                QString::number(stepNum++),
+                joinIntVector(stateStack),
+                "",
+                "接受"
+            });
+            result.accepted = true;
+            break;
+        }
+
+        else {
+            result.steps.append({
+                QString::number(stepNum++),
+                joinIntVector(stateStack),
+                tokens.mid(pos).join(" "),
+                "遇到冲突"
+            });
+            break;
+        }
+    }
+
+    return result;
+}
